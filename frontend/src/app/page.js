@@ -786,12 +786,11 @@ export default function PinjamAja() {
           // Convert to compressed base64 (quality 0.7 for good balance)
           const compressedImage = canvas.toDataURL('image/jpeg', 0.7);
           
-          // Calculate size reduction
+          // Calculate size reduction (log only, no notification)
           const originalSize = (file.size / 1024).toFixed(2);
           const compressedSize = ((compressedImage.length * 0.75) / 1024).toFixed(2);
           
           console.log(`📦 Image compressed: ${originalSize}KB → ${compressedSize}KB`);
-          toast.success(`Gambar di-resize: ${originalSize}KB → ${compressedSize}KB`);
           
           setItemForm({ ...itemForm, image: compressedImage });
         };
