@@ -214,35 +214,23 @@ export default function PinjamAja() {
   const [profileForm, setProfileForm] = useState({ username: '' });
   const [passwordForm, setPasswordForm] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
 
-  // Load data from Supabase on mount - ULTRA FAST & ALWAYS UP-TO-DATE
+  // Load data from Supabase on mount - ZERO DELAY, INSTANT UI
   useEffect(() => {
     const loadData = async () => {
       try {
-        // ⚡ INSTANT LOAD: Show cached data immediately (NO loading spinner!)
-        const cachedItems = cacheHelpers.get('pinjamaja_items_cache', 300000); // 5 min cache
+        // Items already loaded from cache in initial state - UI shows immediately!
+        // Just fetch fresh data in background now
         
-        if (cachedItems && cachedItems.length > 0) {
-          setItems(cachedItems);
-          setIsInitialLoading(false); // ✅ Show UI instantly with cache
-          console.log('⚡ INSTANT: Loaded from cache');
-        } else {
-          // No cache, show UI anyway (empty state is better than spinner)
-          setIsInitialLoading(false);
-          console.log('📭 No cache, showing empty state');
-        }
-        
-        // 🔄 BACKGROUND REFRESH: Always fetch fresh data (even with cache)
-        // This ensures data is ALWAYS up-to-date after initial display
         const currentUser = await getCurrentUser();
         
-        // Fetch fresh items in background (non-blocking, silent)
+        // 🔄 BACKGROUND REFRESH: Fetch fresh items silently (non-blocking)
         fetchItems(50).then(freshItems => {
           if (freshItems.length > 0) {
             setItems(freshItems);
             cacheHelpers.set('pinjamaja_items_cache', freshItems);
             console.log('🔄 UPDATED: Fresh data loaded in background');
-          } else if (!cachedItems || cachedItems.length === 0) {
-            // Only use demo items if no cache AND no fresh data
+          } else {
+            // Only use demo items if no fresh data from database
             const demoItems = [
               {
                 id: '1',
@@ -380,7 +368,6 @@ export default function PinjamAja() {
         }
       } catch (error) {
         console.error('Error loading initial data:', error);
-        setIsInitialLoading(false);
       }
     };
 
