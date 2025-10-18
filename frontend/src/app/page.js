@@ -628,53 +628,37 @@ export default function PinjamAja() {
     }
 
     setIsAddingItem(true);
-
-    // OPTIMISTIC UI: Create temporary item immediately
-    const tempItem = {
-      id: `temp-${Date.now()}`,
-      ...itemForm,
-      price: parseFloat(itemForm.price),
-      ownerId: user.id,
-      ownerName: user.username,
-      status: 'tersedia',
-      createdAt: new Date().toISOString()
-    };
     
-    // Add to items immediately for fast UI update
-    setItems(prevItems => [...prevItems, tempItem]);
-    
-    // Close modal and reset form immediately
-    setShowAddItemForm(false);
-    setShowFeatureModal(false);
-    setItemForm({
-      title: '',
-      description: '',
-      price: '',
-      priceUnit: 'hari',
-      location: '',
-      image: ''
-    });
-    
-    // Navigate immediately
-    navigateTo('sewakan-barang');
-    
-    // Then perform actual API call in background
+    // Perform actual API call FIRST (no optimistic update)
     const result = await addItem(itemForm, user.id, user.username);
     
     if (result.success) {
-      // Replace temp item with real item from server
-      const updatedItems = items.map(item => 
-        item.id === tempItem.id ? result.item : item
-      );
+      // Add item to list
+      const newItem = result.item;
+      const updatedItems = [...items, newItem];
       setItems(updatedItems);
       
-      // FORCE CACHE UPDATE to prevent stale data
+      // Update cache
       cacheHelpers.set('pinjamaja_items_cache', updatedItems);
+      
+      // Close modal and reset form ONLY AFTER success
+      setShowAddItemForm(false);
+      setShowFeatureModal(false);
+      setItemForm({
+        title: '',
+        description: '',
+        price: '',
+        priceUnit: 'hari',
+        location: '',
+        image: ''
+      });
+      
+      // Navigate after success
+      navigateTo('sewakan-barang');
       
       toast.success('Barang berhasil ditambahkan!');
     } else {
-      // Remove temp item on failure
-      setItems(prevItems => prevItems.filter(item => item.id !== tempItem.id));
+      // Show error but keep form open so user can retry
       toast.error(result.error || 'Gagal menambahkan barang');
     }
     
