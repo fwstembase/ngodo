@@ -115,6 +115,16 @@ const cacheHelpers = {
   }
 };
 
+// ⚡ PRE-LOAD CACHE BEFORE RENDER - For instant initial state
+const getInitialItemsFromCache = () => {
+  try {
+    return cacheHelpers.get('pinjamaja_items_cache', 300000) || [];
+  } catch (error) {
+    console.warn('Failed to load initial cache:', error);
+    return [];
+  }
+};
+
 export default function PinjamAja() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -122,7 +132,9 @@ export default function PinjamAja() {
   const [user, setUser] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState('login');
-  const [items, setItems] = useState([]);
+  
+  // ⚡ INSTANT INITIAL STATE - Load from cache immediately before first render
+  const [items, setItems] = useState(getInitialItemsFromCache());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const [wishlist, setWishlist] = useState([]);
