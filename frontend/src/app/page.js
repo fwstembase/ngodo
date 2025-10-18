@@ -746,9 +746,56 @@ export default function PinjamAja() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Check if file is an image
+      if (!file.type.startsWith('image/')) {
+        toast.error('File harus berupa gambar');
+        return;
+      }
+      
+      // Resize and compress image for faster loading
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setItemForm({ ...itemForm, image: reader.result });
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          // Create canvas for resizing
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Calculate new dimensions (max 800px width/height)
+          let width = img.width;
+          let height = img.height;
+          const maxSize = 800;
+          
+          if (width > height) {
+            if (width > maxSize) {
+              height = (height * maxSize) / width;
+              width = maxSize;
+            }
+          } else {
+            if (height > maxSize) {
+              width = (width * maxSize) / height;
+              height = maxSize;
+            }
+          }
+          
+          // Set canvas size and draw resized image
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Convert to compressed base64 (quality 0.7 for good balance)
+          const compressedImage = canvas.toDataURL('image/jpeg', 0.7);
+          
+          // Calculate size reduction
+          const originalSize = (file.size / 1024).toFixed(2);
+          const compressedSize = ((compressedImage.length * 0.75) / 1024).toFixed(2);
+          
+          console.log(`📦 Image compressed: ${originalSize}KB → ${compressedSize}KB`);
+          toast.success(`Gambar di-resize: ${originalSize}KB → ${compressedSize}KB`);
+          
+          setItemForm({ ...itemForm, image: compressedImage });
+        };
+        img.src = event.target.result;
       };
       reader.readAsDataURL(file);
     }
