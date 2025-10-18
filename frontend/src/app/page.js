@@ -150,8 +150,8 @@ export default function PinjamAja() {
   const [sortBy, setSortBy] = useState('relevance'); // 'relevance', 'price', 'location'
   const [locationFilter, setLocationFilter] = useState('');
   
-  // Loading states
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  // Loading states - START WITH FALSE FOR INSTANT UI
+  const [isInitialLoading, setIsInitialLoading] = useState(false); // ⚡ Changed to false for instant display
   const [isAuthLoading, setIsAuthLoading] = useState(false);
   const [isAddingItem, setIsAddingItem] = useState(false);
   const [isEditingItem, setIsEditingItem] = useState(false);
