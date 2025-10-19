@@ -277,3 +277,6 @@ agent_communication:
   
   - agent: "main"
     message: "✅ ADDITIONAL ENHANCEMENT COMPLETED: CTA section now hidden after user login. The 'Siap Mulai dengan PinjamAja?' call-to-action section with registration button only displays for non-logged-in users. Implemented conditional rendering using {!user && (...)} wrapper around the entire CTA section. This provides cleaner UX for authenticated users who don't need registration prompts. Feature tested and verified - CTA appears when logged out, disappears when logged in."
+  
+  - agent: "main"
+    message: "✅ BUG FIX COMPLETED: Fixed critical wishlist bug where items were not being saved to database. The handleAddToWishlist function was only saving to localStorage, causing wishlist data to not persist properly and not sync across devices/sessions. Modified the function to properly call the Supabase API (addToWishlist) which saves to the database. The function is now async and properly handles API responses, updating local state with the database result. Wishlist items will now persist correctly, sync via Realtime subscriptions, and be accessible from the Wishlist menu."
