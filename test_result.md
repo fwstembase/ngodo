@@ -102,7 +102,9 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Clone repo https://github.com/fwstembase/ngodo, pada footer yang ada di halaman beranda buat beberapa menu pada fitur utama dan bantuan ketika di klik memunculkan detail"
+user_problem_statement: "Wishlist tidak mau tersimpan pada menu wishlist saat user klik tambahkan ke wishlist, tolong perbaiki"
+
+previous_problem_statement_2: "Clone repo https://github.com/fwstembase/ngodo, pada footer yang ada di halaman beranda buat beberapa menu pada fitur utama dan bantuan ketika di klik memunculkan detail"
 
 previous_problem_statement: "Clone repo https://github.com/fwstembase/ngodo, buat menu yang muncul setelah kelola barang diklik (button tandai, edit dan hapus) menjadi lebih elegan dan keren (lihat lampiran). Menu tidak boleh membuat box tambah melebar ke bawah setelah kelola barang diklik"
 
