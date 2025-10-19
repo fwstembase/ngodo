@@ -237,6 +237,18 @@ frontend:
         agent: "main"
         comment: "COMPLETED: CTA section ('Siap Mulai dengan PinjamAja?' with 'Daftar Sekarang - Gratis!' button) now only displays when user is not logged in. Implementation: Wrapped CTA section with conditional rendering {!user && (...)}. When user is logged in (user state is not null), the entire CTA section is hidden from the DOM. When user is logged out (user state is null), the CTA section displays normally. This provides a cleaner experience for logged-in users who don't need to see the registration call-to-action. Verified with browser console logs showing CTA exists when logged out."
 
+  - task: "Fix wishlist not saving to database"
+    implemented: true
+    working: true
+    file: "frontend/src/app/page.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "FIXED: Wishlist items were not being saved to database when user clicked 'Tambah ke Wishlist' button. Root cause: handleAddToWishlist function was only saving to localStorage instead of calling Supabase API. Solution: Modified handleAddToWishlist to be async and call addToWishlist(user.id, itemId) API function, which saves to Supabase database. The function now: 1) Checks if user is logged in, 2) Checks if item already in wishlist, 3) Calls addToWishlist API to save to database, 4) Updates local state with result from API including proper wishlist item structure, 5) Shows success/error toast messages. Wishlist items will now persist across sessions and sync via Realtime subscriptions."
+
 metadata:
   created_by: "main_agent"
   version: "4.0"
