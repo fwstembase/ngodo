@@ -2164,13 +2164,15 @@ export default function PinjamAja() {
             
             <div className="text-center mt-10">
               <p className="text-gray-600 mb-4">Masih punya pertanyaan?</p>
-              <Button 
-                onClick={() => showFeature('Hubungi Kami', 'Silakan hubungi tim support kami untuk bantuan lebih lanjut.')}
-                style={{ backgroundColor: '#245EDE' }} 
-                className="text-white hover:opacity-90"
-              >
-                👉 Hubungi Kami
-              </Button>
+
+            <Button
+              onClick={() => window.open('https://wa.me/6281285377443', '_blank')}
+              style={{ backgroundColor: '#245EDE' }}
+              className="text-white hover:opacity-90"
+            >
+              👉 Hubungi Kami
+            </Button>
+
             </div>
           </div>
         </div>
@@ -2203,7 +2205,7 @@ export default function PinjamAja() {
             <div>
               <h3 className="text-2xl font-bold mb-4" style={{ color: '#245EDE' }}>PinjamAja</h3>
               <p className="text-gray-400 leading-relaxed">
-                Platform pinjam-meminjam barang terpercaya untuk berbagi, berhemat, dan saling membantu.
+                Platform pinjam & sewakan barang terpercaya untuk berbagi, berhemat, dan saling membantu.
               </p>
             </div>
             <div>
