@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Enhanced Kelola Barang Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes fadeOutScale {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+        }
+        
+        .menu-enter {
+            animation: fadeInScale 0.2s ease-out forwards;
+        }
+        
+        .menu-exit {
+            animation: fadeOutScale 0.2s ease-in forwards;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="bg-blue-600 text-white p-6 rounded-lg mb-8">
+            <h1 class="text-3xl font-bold mb-2">✨ Demo: Enhanced "Kelola Barang" Menu</h1>
+            <p class="text-blue-100">Menu yang lebih elegan dengan floating popup dan animasi smooth</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- BEFORE (Old Design) -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold mb-4 text-red-600">❌ BEFORE - Old Design</h2>
+                <p class="text-gray-600 mb-4 text-sm">Menu membuat box melebar ke bawah</p>
+                
+                <div class="border-2 border-gray-300 rounded-lg p-4">
+                    <div class="bg-gray-100 h-40 rounded-lg mb-3 flex items-center justify-center text-gray-400">
+                        [Product Image]
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Nama Barang</h3>
+                    <p class="text-sm text-gray-600 mb-2">Jakarta Selatan</p>
+                    <p class="font-bold text-blue-600 mb-3">Rp 50,000 / hari</p>
+                    
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg mb-2">
+                        Kelola Barang
+                    </button>
+                    
+                    <!-- Old expanding menu -->
+                    <div class="space-y-2 pt-2 border-t-2 border-dashed border-red-400">
+                        <button class="w-full border-2 border-gray-300 py-2 rounded-lg text-sm">
+                            Tandai Tidak Tersedia
+                        </button>
+                        <button class="w-full border-2 border-gray-300 py-2 rounded-lg text-sm">
+                            Edit Barang
+                        </button>
+                        <button class="w-full bg-red-500 text-white py-2 rounded-lg text-sm">
+                            Hapus Barang
+                        </button>
+                    </div>
+                    <p class="text-xs text-red-600 mt-2 text-center">⬇️ Box melebar ke bawah</p>
+                </div>
+            </div>
+
+            <!-- AFTER (New Design) -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold mb-4 text-green-600">✅ AFTER - New Design</h2>
+                <p class="text-gray-600 mb-4 text-sm">Menu muncul sebagai floating popup di atas</p>
+                
+                <div class="border-2 border-green-400 rounded-lg p-4">
+                    <div class="bg-gray-100 h-40 rounded-lg mb-3 flex items-center justify-center text-gray-400">
+                        [Product Image]
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Nama Barang</h3>
+                    <p class="text-sm text-gray-600 mb-2">Jakarta Selatan</p>
+                    <p class="font-bold text-blue-600 mb-3">Rp 50,000 / hari</p>
+                    
+                    <div class="relative">
+                        <button 
+                            id="kelolaBtn" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors"
+                        >
+                            Kelola Barang
+                        </button>
+                        
+                        <!-- New floating menu -->
+                        <div 
+                            id="floatingMenu" 
+                            class="hidden absolute bottom-full left-0 right-0 mb-2 bg-white rounded-lg shadow-2xl border border-gray-200 p-3 space-y-2 z-50"
+                        >
+                            <button class="w-full flex items-center justify-start px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+                                <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                                    <div class="w-2 h-2 rounded-full bg-gray-600"></div>
+                                </div>
+                                <span class="font-medium text-gray-700">Tandai Tidak Tersedia</span>
+                            </button>
+                            
+                            <button class="w-full flex items-center justify-start px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+                                <svg class="w-5 h-5 mr-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                <span class="font-medium text-gray-700">Edit Barang</span>
+                            </button>
+                            
+                            <button class="w-full flex items-center justify-start px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <span class="font-medium">Hapus Barang</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-green-600 mt-2 text-center">⬆️ Menu floating di atas (klik tombol)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features List -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-bold mb-4">🎨 Key Improvements</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Floating Popup</h3>
+                        <p class="text-sm text-gray-600">Menu muncul di atas button menggunakan <code class="bg-gray-100 px-2 py-1 rounded">position: absolute</code> dan <code class="bg-gray-100 px-2 py-1 rounded">bottom-full</code></p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">No Layout Shift</h3>
+                        <p class="text-sm text-gray-600">Box tidak melebar ke bawah, konten lain tidak bergeser</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Smooth Animations</h3>
+                        <p class="text-sm text-gray-600">Fade in/out + scale + slide dengan Framer Motion (0.2s duration)</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Better Icons</h3>
+                        <p class="text-sm text-gray-600">Circle indicator untuk status, Edit icon, Trash icon yang jelas</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Enhanced Visuals</h3>
+                        <p class="text-sm text-gray-600">Shadow-2xl, border, hover effects yang lebih baik</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">✅</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Color Coding</h3>
+                        <p class="text-sm text-gray-600">Red untuk delete action, gray untuk neutral actions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Details -->
+        <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">💻 Technical Implementation</h2>
+            <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                <pre class="text-xs"><code>&lt;div className="relative"&gt;
+  &lt;Button onClick={toggleMenu}&gt;Kelola Barang&lt;/Button&gt;
+  
+  &lt;AnimatePresence&gt;
+    {isOpen && (
+      &lt;motion.div
+        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        className="absolute bottom-full left-0 right-0 mb-2 
+                   bg-white rounded-lg shadow-2xl border 
+                   border-gray-200 p-3 space-y-2 z-50"
+      &gt;
+        {/* Menu items */}
+      &lt;/motion.div&gt;
+    )}
+  &lt;/AnimatePresence&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <div class="mt-4 grid md:grid-cols-3 gap-4 text-sm">
+                <div>
+                    <h3 class="font-semibold text-blue-400 mb-2">Position</h3>
+                    <ul class="space-y-1 text-gray-300">
+                        <li>• <code>relative</code> container</li>
+                        <li>• <code>absolute bottom-full</code></li>
+                        <li>• <code>mb-2</code> untuk gap</li>
+                        <li>• <code>z-50</code> untuk stacking</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-green-400 mb-2">Animation</h3>
+                    <ul class="space-y-1 text-gray-300">
+                        <li>• Opacity: 0 → 1</li>
+                        <li>• Y: -10px → 0</li>
+                        <li>• Scale: 0.95 → 1</li>
+                        <li>• Duration: 0.2s</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-purple-400 mb-2">Visual</h3>
+                    <ul class="space-y-1 text-gray-300">
+                        <li>• <code>shadow-2xl</code></li>
+                        <li>• <code>border-gray-200</code></li>
+                        <li>• <code>hover:bg-gray-50</code></li>
+                        <li>• <code>transition-all</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+            <h3 class="font-bold text-lg mb-2">📍 Implemented in 3 Locations:</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li>✅ <strong>Grid View</strong> - Halaman "Sewakan Barang" (setiap card barang)</li>
+                <li>✅ <strong>Mobile Detail View</strong> - Halaman detail barang (tampilan mobile)</li>
+                <li>✅ <strong>Desktop Detail View</strong> - Halaman detail barang (tampilan desktop)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const kelolaBtn = document.getElementById('kelolaBtn');
+        const floatingMenu = document.getElementById('floatingMenu');
+        let isOpen = false;
+
+        kelolaBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            
+            if (isOpen) {
+                floatingMenu.classList.remove('hidden', 'menu-exit');
+                floatingMenu.classList.add('menu-enter');
+            } else {
+                floatingMenu.classList.remove('menu-enter');
+                floatingMenu.classList.add('menu-exit');
+                setTimeout(() => {
+                    floatingMenu.classList.add('hidden');
+                }, 200);
+            }
+        });
+
+        // Close when clicking menu items
+        floatingMenu.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                isOpen = false;
+                floatingMenu.classList.remove('menu-enter');
+                floatingMenu.classList.add('menu-exit');
+                setTimeout(() => {
+                    floatingMenu.classList.add('hidden');
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
