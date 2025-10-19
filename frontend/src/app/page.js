@@ -1198,7 +1198,7 @@ export default function PinjamAja() {
   };
 
   // Wishlist handlers
-  const handleAddToWishlist = (itemId) => {
+  const handleAddToWishlist = async (itemId) => {
     if (!user) {
       toast.error('Silakan login terlebih dahulu');
       return;
@@ -1210,14 +1210,15 @@ export default function PinjamAja() {
       return;
     }
 
-    const newWishlist = [...wishlist, {
-      userId: user.id,
-      itemId: itemId,
-      addedAt: new Date().toISOString()
-    }];
-    setWishlist(newWishlist);
-    localStorage.setItem('wishlist', JSON.stringify(newWishlist));
-    toast.success('Berhasil ditambahkan ke wishlist');
+    // Save to database via Supabase
+    const result = await addToWishlist(user.id, itemId);
+    if (result.success) {
+      const newWishlist = [...wishlist, result.wishlistItem];
+      setWishlist(newWishlist);
+      toast.success('Berhasil ditambahkan ke wishlist');
+    } else {
+      toast.error(result.error || 'Gagal menambahkan ke wishlist');
+    }
   };
 
   const handleToggleWishlist = async (itemId) => {
