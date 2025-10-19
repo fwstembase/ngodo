@@ -2166,7 +2166,7 @@ export default function PinjamAja() {
               <p className="text-gray-600 mb-4">Masih punya pertanyaan?</p>
 
             <Button
-              onClick={() => window.open('https://wa.me/6281285377443', '_blank')}
+              onClick={() => window.open('wa.me/6281285377443', '_blank')}
               style={{ backgroundColor: '#245EDE' }}
               className="text-white hover:opacity-90"
             >
