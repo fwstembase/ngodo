@@ -3084,7 +3084,7 @@ export default function PinjamAja() {
                     <div className="text-sm text-gray-500 mb-4">Oleh: {item.ownerName}</div>
                     <Button onClick={() => handleRemoveFromWishlist(item.id)} variant="outline" className="w-full hover-grow btn-ripple">
                       <Trash2 size={16} className="mr-2" />
-                      Hapus dari Wishlist
+                      Hapus
                     </Button>
                   </CardContent>
                 </Card>
