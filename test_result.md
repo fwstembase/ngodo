@@ -223,6 +223,18 @@ frontend:
         agent: "main"
         comment: "COMPLETED: Enhanced footer menu items to be fully interactive with detailed modal popups. Implementation details: 1) Made all 'Fitur Utama' items clickable (Pinjam Barang, Sewakan Barang, Chat Langsung, Wishlist), 2) Updated all 'Bantuan' section items with comprehensive content (Cara Menggunakan, FAQ, Kebijakan Privasi, Syarat & Ketentuan), 3) Each menu item now displays detailed information in a modal popup when clicked, 4) Added hover effects (transition-colors) for better UX, 5) Content includes: feature descriptions, step-by-step guides (A. Pinjam Barang - 4 steps, B. Sewakan Barang - 4 steps), Q&A for FAQ (3 questions), privacy policy details, and terms & conditions (5 points), 6) Modal uses existing feature modal component with Framer Motion animations. All footer menu items are now fully functional and display relevant, detailed content as specified by user. Tested manually with screenshots confirming proper functionality."
 
+  - task: "Hide CTA section after user login"
+    implemented: true
+    working: true
+    file: "frontend/src/app/page.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "COMPLETED: CTA section ('Siap Mulai dengan PinjamAja?' with 'Daftar Sekarang - Gratis!' button) now only displays when user is not logged in. Implementation: Wrapped CTA section with conditional rendering {!user && (...)}. When user is logged in (user state is not null), the entire CTA section is hidden from the DOM. When user is logged out (user state is null), the CTA section displays normally. This provides a cleaner experience for logged-in users who don't need to see the registration call-to-action. Verified with browser console logs showing CTA exists when logged out."
+
 metadata:
   created_by: "main_agent"
   version: "4.0"
