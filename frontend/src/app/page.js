@@ -2178,25 +2178,27 @@ export default function PinjamAja() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24" style={{ background: 'linear-gradient(135deg, #245EDE 0%, #1a4ab8 100%)' }}>
-        <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Siap Mulai dengan PinjamAja?</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
-            Bergabunglah dengan ribuan pengguna yang sudah merasakan kemudahan pinjam-meminjam barang!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => setShowAuthModal(true)} 
-              size="lg" 
-              className="bg-white hover:bg-gray-100 text-lg px-10 py-6" 
-              style={{ color: '#245EDE' }}
-            >
-              Daftar Sekarang - Gratis!
-            </Button>
+      {/* CTA Section - Only show when user is not logged in */}
+      {!user && (
+        <section className="py-24" style={{ background: 'linear-gradient(135deg, #245EDE 0%, #1a4ab8 100%)' }}>
+          <div className="container mx-auto px-4 text-center text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Siap Mulai dengan PinjamAja?</h2>
+            <p className="text-xl mb-10 max-w-2xl mx-auto">
+              Bergabunglah dengan ribuan pengguna yang sudah merasakan kemudahan pinjam-meminjam barang!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                onClick={() => setShowAuthModal(true)} 
+                size="lg" 
+                className="bg-white hover:bg-gray-100 text-lg px-10 py-6" 
+                style={{ color: '#245EDE' }}
+              >
+                Daftar Sekarang - Gratis!
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
