@@ -2209,19 +2209,19 @@ export default function PinjamAja() {
             <div>
               <h4 className="font-semibold mb-4 text-lg">Fitur Utama</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>• Pinjam Barang</li>
-                <li>• Sewakan Barang</li>
-                <li>• Chat Langsung</li>
-                <li>• Wishlist</li>
+                <li><button onClick={() => showFeature('Pinjam Barang', 'Temukan berbagai barang yang bisa Anda pinjam dari komunitas. Cukup cari barang yang Anda butuhkan, hubungi pemiliknya, dan atur jadwal pinjaman.')} className="hover:text-white transition-colors">• Pinjam Barang</button></li>
+                <li><button onClick={() => showFeature('Sewakan Barang', 'Punya barang yang jarang dipakai? Sewakan dan dapatkan penghasilan tambahan. Upload foto, tentukan harga, dan tunggu permintaan masuk.')} className="hover:text-white transition-colors">• Sewakan Barang</button></li>
+                <li><button onClick={() => showFeature('Chat Langsung', 'Komunikasi langsung dengan pemilik atau peminjam barang. Koordinasikan waktu, tempat, dan detail pinjaman dengan mudah melalui fitur chat kami.')} className="hover:text-white transition-colors">• Chat Langsung</button></li>
+                <li><button onClick={() => showFeature('Wishlist', 'Simpan barang-barang yang menarik perhatian Anda ke wishlist. Akses kapan saja dan hubungi pemilik saat Anda siap untuk meminjam.')} className="hover:text-white transition-colors">• Wishlist</button></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-lg">Bantuan</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><button onClick={() => showFeature('Cara Menggunakan', 'Panduan lengkap cara menggunakan PinjamAja')} className="hover:text-white">• Cara Menggunakan</button></li>
-                <li><button onClick={() => showFeature('FAQ', 'Pertanyaan yang sering diajukan')} className="hover:text-white">• FAQ</button></li>
-                <li><button onClick={() => showFeature('Kebijakan Privasi', 'Kebijakan privasi pengguna')} className="hover:text-white">• Kebijakan Privasi</button></li>
-                <li><button onClick={() => showFeature('Syarat & Ketentuan', 'Syarat dan ketentuan penggunaan')} className="hover:text-white">• Syarat & Ketentuan</button></li>
+                <li><button onClick={() => showFeature('Cara Menggunakan', 'A. Pinjam Barang\n\n1. Login ke akun\n2. Cari barang yang dibutuhkan\n3. Hubungi pemilik\n4. Lakukan pembayaran dan ambil barang\n\nB. Sewakan Barang\n\n1. Login ke akun\n2. Buka menu Sewakan Barang\n3. Isi detail dan unggah foto\n4. Barang siap disewakan dan kamu mulai dapat penghasilan')} className="hover:text-white transition-colors">• Cara Menggunakan</button></li>
+                <li><button onClick={() => showFeature('FAQ', 'Q: Apakah PinjamAja gratis?\nA: Ya, mendaftar dan menggunakan platform kami sepenuhnya gratis.\n\nQ: Bagaimana cara pembayaran?\nA: Pembayaran dilakukan langsung antara peminjam dan pemilik barang saat bertemu.\n\nQ: Apakah ada jaminan keamanan?\nA: Kami menyarankan bertemu di tempat umum dan memeriksa identitas kedua belah pihak.')} className="hover:text-white transition-colors">• FAQ</button></li>
+                <li><button onClick={() => showFeature('Kebijakan Privasi', 'Kami sangat menghargai privasi Anda. Data pribadi Anda disimpan dengan aman dan tidak akan dibagikan kepada pihak ketiga tanpa izin Anda. Kami hanya menggunakan informasi Anda untuk meningkatkan layanan platform.')} className="hover:text-white transition-colors">• Kebijakan Privasi</button></li>
+                <li><button onClick={() => showFeature('Syarat & Ketentuan', '1. Pengguna harus berusia minimal 17 tahun\n2. Informasi yang diberikan harus akurat dan benar\n3. Dilarang menyewakan barang ilegal atau berbahaya\n4. Transaksi dilakukan atas tanggung jawab masing-masing pihak\n5. PinjamAja tidak bertanggung jawab atas kerugian dalam transaksi')} className="hover:text-white transition-colors">• Syarat & Ketentuan</button></li>
               </ul>
             </div>
           </div>
