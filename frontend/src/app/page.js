@@ -2166,7 +2166,7 @@ export default function PinjamAja() {
               <p className="text-gray-600 mb-4">Masih punya pertanyaan?</p>
 
             <Button
-              onClick={() => window.open('wa.me/6281285377443', '_blank')}
+              onClick={() => window.open('https://api.whatsapp.com/send/?phone=6281285377443&text&type=phone_number&app_absent=0', '_blank')}
               style={{ backgroundColor: '#245EDE' }}
               className="text-white hover:opacity-90"
             >
