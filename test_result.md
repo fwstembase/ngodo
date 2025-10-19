@@ -231,7 +231,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Enhanced 'Kelola Barang' menu with elegant floating popup design"
+    - "Interactive footer menu items with detailed modal popups"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
